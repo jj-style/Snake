@@ -1,3 +1,3 @@
 # Snake
-Basic snake game in python
+Basic snake game in python  
 Licensed under the [MIT License](LICENSE).

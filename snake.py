@@ -89,6 +89,7 @@ class Player():
 class App():
     def __init__(self):
         pygame.init()
+        pygame.mixer.quit()
         pygame.display.set_caption('snake')
         self.screen = pygame.display.set_mode((screenx, screeny))
         self.clock = pygame.time.Clock()

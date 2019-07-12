@@ -49,7 +49,7 @@ class Game():
         renderText(str(self.score),25,BLACK,25,25)
     def getScore(self):
         return self.score
-    
+
 class Player():
     def __init__(self,starting_length = 5):
         self.length = starting_length
@@ -79,7 +79,7 @@ class Player():
         return self.y
     def getLength(self):
         return self.length
-        
+
     def eat(self):
         game.increaseScore()
         self.length += 1
@@ -121,11 +121,9 @@ def events():
                 direction = "up"
             elif event.key == pygame.K_DOWN and game.getLastKey() != "up":
                 direction = "down"
-            elif event.key == pygame.K_SPACE:
-                player.eat()
             if direction != "":
                 game.setLastKey(direction)
-            
+
 def render():
     app.getScreen().fill(WHITE)
     player.show()
@@ -154,19 +152,20 @@ def eatFood():
         player.eat()
 
 #__________GAME OVER__________#
-        
+
 def gameOverRender():
     app.getScreen().fill(WHITE)
     player.show()
     game.showFood()
     renderText("GAME OVER",30,BLACK,screenx/3,screeny/10)
     renderText("Score: {}".format(str(game.getScore())),20,BLACK,screenx/3,screeny/6)
+    renderText("Press enter to restart",20,BLACK,0.175*screenx,0.75*screeny)
     pygame.display.update()
     app.getClock().tick(app.getTickSpeed())
 
 def gameOverGetMove(last_choice):
     new_choice = last_choice
-    while new_choice == last_choice: 
+    while new_choice == last_choice:
         new_choice = random.choice(["up","down","left","right"])
         if last_choice == "up" and new_choice == "down":
             new_choice = "up"
@@ -204,7 +203,7 @@ def gameOverScreen():
             return True
         elif play_again == False:
             app.exitGame()
-    
+
 #__________MAIN__________#
 def main():
     game.spawnFood()
@@ -223,5 +222,3 @@ if __name__ == "__main__":
         player = Player() #starting_length=10
         game = Game()
         main()
-
-
